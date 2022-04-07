@@ -1,7 +1,7 @@
 # Rice Biomass CNN
 
 Rice Biomass CNN is a model to estimate the rice above ground biomass (biomass) based on RGB image of rice canopy. The model is developed based on more than 12,000 images of 31 cultivars.
-This project is the implementation of the paper "".
+This project is the implementation of the paper "***".
 
 ## Performance 
 
@@ -44,15 +44,15 @@ RGB images that were captured vertically downwards over the rice canopy from 1.5
 pip install -r requirements.txt
 ```
 
-2. Install Pytorch
+2. Install Tensorflow
 
-Please install pytorch version compatible with your cuda version.
+Please install Tensorflow version compatible with your cuda version.
 
 3. Download pre-trained model from google drive.
 
 ```bash
 mkdir checkpoints
-wget "https://drive.google.com/u/0/uc?export=download&id=1XgTUGK8130gnY9AF3gYv9zhJSJaxhHVp" -O rice_yield_CNN.pth
+wget "***" -O rice_yield_CNN.hdf5
 ```
 
 ## Estimation
@@ -60,7 +60,7 @@ wget "https://drive.google.com/u/0/uc?export=download&id=1XgTUGK8130gnY9AF3gYv9z
 Run
 
 ```bash
-python estimate.py --checkpoint_path checkpoints/rice_biomass_CNN.pth --image_dir example --csv
+python estimate.py --checkpoint_path checkpoints/rice_biomass_CNN.hdf5 --image_dir example --csv
 ```
 
 You can find estimated biomass on your console.
