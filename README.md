@@ -11,7 +11,7 @@ The model explained approximately 70% of variation in observed rice biomass usin
 
 RGB images that were captured vertically downwards over the rice canopy from 1.5m above the ground using a digital camera should be input. 
 
-![example](https://github.com/KotaNakajima/rice_biomass_CNN/blob/develop/example/1.jpg)
+![example](https://github.com/KotaNakajima/rice_biomass_CNN/example/1.jpg)
 
 ## Environment on experiments
 
