@@ -52,7 +52,7 @@ Please install Tensorflow version compatible with your cuda version.
 
 ```bash
 mkdir checkpoints
-wget "***" -O rice_yield_CNN.hdf5
+wget "***" -O rice_biomass_CNN.hdf5
 ```
 
 ## Estimation
