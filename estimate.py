@@ -8,7 +8,8 @@ import pandas as pd
 import argparse
 from glob import glob
 from lib.model import RiceBiomassCNN
-from torch.utils.data.sampler import RandomSampler
+#from torch.utils.data.sampler import RandomSampler
+from importlib import import_module, reload
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--checkpoint_path', type=str, required=True)
@@ -31,8 +32,8 @@ image_path_list = sorted(glob(os.path.join(image_dir, "*")))
 
 if __name__ == "__main__":
 
-    model = RiceBiomassCNN()
-    model = reload(import_module(RiceBiomassCNN)).build(Input_shape)
+    #model = RiceBiomassCNN()
+    model = reload(import_module(RiceBiomassCNN)).build(input_resolution)
     #checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
     #state_dict = checkpoint['state_dict']
     #model.load_state_dict(state_dict, strict=True)
