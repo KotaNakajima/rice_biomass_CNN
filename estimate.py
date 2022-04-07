@@ -19,9 +19,10 @@ checkpoint_path = args.checkpoint_path
 image_dir = args.image_dir
 csv = args.csv
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-input_resolution = (512, 512)
+#device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+input_resolution = (225, 300)
 mean = 0.5
 std = 0.5
 
@@ -29,12 +30,13 @@ image_path_list = sorted(glob(os.path.join(image_dir, "*")))
 
 if __name__ == "__main__":
 
-    model = RiceYieldCNN()
-    checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
-    state_dict = checkpoint['state_dict']
-    model.load_state_dict(state_dict, strict=True)
-    model.to(device)
-    model.eval()
+    model = RiceBiomassCNN()
+    #checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
+    #state_dict = checkpoint['state_dict']
+    #model.load_state_dict(state_dict, strict=True)
+    model.load_weights(checkpoint_path)
+    #model.to(device)
+    #model.eval()
 
     results = []
     for i, image_path in enumerate(image_path_list):
@@ -46,21 +48,21 @@ if __name__ == "__main__":
         input_img = (input_img - np.array(mean).astype(np.float32)) / \
             np.array(std).astype(np.float32)
         input_img = input_img.transpose(2, 0, 1)
-        input_img = torch.Tensor(input_img).unsqueeze(0).to(device)
+        ##input_img = torch.Tensor(input_img).unsqueeze(0).to(device)
 
         # model output
-        pred_yield = model(input_img)
+        pred_biomass = model.predict(input_image)
 
-        pred_yield = pred_yield[0]
-        pred_yield = round(float(pred_yield.squeeze(0).detach().cpu().numpy()), 2)
-        print(f"{image_name}: {pred_yield} g/m2, {round(pred_yield / 100,2)} t/ha")
+        #pred_biomass = pred_biomass[0]
+        #pred_biomass = round(float(pred_biomass.squeeze(0).detach().cpu().numpy()), 2)
+        print(f"{image_name}: {pred_biomass} g/m2, {round(pred_biomass / 100,2)} t/ha")
 
         if csv:
             results.append({
                 "id": i,
                 "image_name": image_name,
-                "gpms": pred_yield,
-                "tpha": pred_yield / 100
+                "gpms": pred_biomass,
+                "tpha": pred_biomass / 100
             })
     if csv:
         pd.DataFrame.from_records(results).to_csv("out.csv", index=False)
