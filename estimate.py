@@ -1,6 +1,7 @@
 import numpy as np
 #import torch
 import tensorflow as tf
+from tensorflow.python.keras.models import load_model
 import cv2
 import os
 import pandas as pd
@@ -31,6 +32,7 @@ image_path_list = sorted(glob(os.path.join(image_dir, "*")))
 if __name__ == "__main__":
 
     model = RiceBiomassCNN()
+    model = reload(import_module(RiceBiomassCNN)).build(Input_shape)
     #checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
     #state_dict = checkpoint['state_dict']
     #model.load_state_dict(state_dict, strict=True)
