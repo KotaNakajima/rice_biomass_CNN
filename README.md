@@ -5,7 +5,7 @@ This project is the implementation of the paper "***".
 
 ## Performance 
 
-The model explained approximately 70% of variation in observed rice biomass using the test dataset, and 50% of variation using the independent prediction dataset. 
+The model explained approximately 95% of variation in observed rice biomass using the test dataset, and 87% of variation using the independent prediction dataset. 
 
 ## Conditions on estimation
 
