@@ -7,12 +7,11 @@
 import glob
 import numpy as np
 import pandas as pd
-import os
+#import os
 import keras
-import matplotlib.pyplot as plt
-import glob
+#import matplotlib.pyplot as plt
 import tensorflow as tf
-from collections import defaultdict
+#from collections import defaultdict
 from keras.applications.resnet_v2 import ResNet152V2
 from keras.activations import selu
 from keras import models, callbacks
@@ -23,16 +22,16 @@ from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.merge import add, multiply, concatenate, maximum, average
 from keras.layers import Input, LeakyReLU, ELU
 from keras.preprocessing.image import array_to_img, img_to_array, load_img
-from sklearn.model_selection import train_test_split
-from keras import optimizers
+#from sklearn.model_selection import train_test_split
+#from keras import optimizers
 from keras.preprocessing.image import load_img,img_to_array
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import layers
 from keras.layers.normalization import BatchNormalization
-from scipy import optimize
-from sklearn.metrics import r2_score
-from tensorflow.keras.utils import plot_model
-from keras.optimizers import Adam, Nadam
+#from scipy import optimize
+#from sklearn.metrics import r2_score
+#from tensorflow.keras.utils import plot_model
+#from keras.optimizers import Adam, Nadam
 
 
 
