@@ -7,9 +7,9 @@ import os
 import pandas as pd
 import argparse
 from glob import glob
-from lib.model import RiceBiomassCNN
+#from lib.model import RiceBiomassCNN
 #from torch.utils.data.sampler import RandomSampler
-from importlib import import_module, reload
+#from importlib import import_module, reload
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--checkpoint_path', type=str, required=True)
@@ -21,7 +21,6 @@ checkpoint_path = args.checkpoint_path
 image_dir = args.image_dir
 csv = args.csv
 
-
 #device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 input_resolution = (225, 300)
@@ -30,10 +29,16 @@ std = 0.5
 
 image_path_list = sorted(glob(os.path.join(image_dir, "*")))
 
+def RMSE(y_true, y_pred):
+    squared_error = tf.keras.backend.square(y_true - y_pred)
+    MSE = tf.keras.backend.mean(squared_error)
+    RMSE = tf.sqrt(MSE)
+    return RMSE
+
 if __name__ == "__main__":
 
     #model = RiceBiomassCNN()
-    model = reload(import_module(RiceBiomassCNN)).build(input_resolution)
+    model = load_model("checkpoints/model.08Adam_nnc6_256_0.001",custom_objects={"RMSE": RMSE} )
     #checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
     #state_dict = checkpoint['state_dict']
     #model.load_state_dict(state_dict, strict=True)
@@ -50,14 +55,16 @@ if __name__ == "__main__":
         input_img = image.astype(np.float32) / 255.0
         input_img = (input_img - np.array(mean).astype(np.float32)) / \
             np.array(std).astype(np.float32)
-        input_img = input_img.transpose(2, 0, 1)
+    
+        input_img = input_img.transpose(1,0,2)
+        input_img = np.expand_dims(input_img,0)
+        print(type(input_img))
         ##input_img = torch.Tensor(input_img).unsqueeze(0).to(device)
-
         # model output
-        pred_biomass = model.predict(input_image)
+        pred_biomass = model.predict(input_img)
 
         #pred_biomass = pred_biomass[0]
-        #pred_biomass = round(float(pred_biomass.squeeze(0).detach().cpu().numpy()), 2)
+        pred_biomass = round(float(pred_biomass.squeeze(0)), 2)
         print(f"{image_name}: {pred_biomass} g/m2, {round(pred_biomass / 100,2)} t/ha")
 
         if csv:
