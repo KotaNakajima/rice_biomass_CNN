@@ -52,7 +52,8 @@ Please install Tensorflow version compatible with your cuda version.
 
 ```bash
 mkdir checkpoints
-wget "https://drive.google.com/file/d/1u-qqyvlsDZEskUSEKUClFAtt7ANI8gUj/view?usp=sharing" -O rice_biomass_CNN.hdf5
+wget "https://drive.google.com/file/d/1km2PlyGH8Y4CZuQ4OaQgxPdPqNkT7FIo/view?usp=sharing" -O rice_biomass_CNN_weights.hdf5
+wget "https://drive.google.com/file/d/1pfUo9NcteQ-R0g9RJR7LH5IzJmrV1NnX/view?usp=sharing" -O rice_biomass_CNN_model
 ```
 
 ## Estimation
