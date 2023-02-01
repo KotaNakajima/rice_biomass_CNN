@@ -1,6 +1,6 @@
 # Rice Biomass CNN
 
-Rice Biomass CNN is a model to estimate the rice above ground biomass (biomass) based on RGB image of rice canopy. The model is developed based on more than 12,000 images of 31 cultivars.
+Rice Biomass CNN is a model to estimate the rice above ground biomass (biomass) based on RGB image of rice canopy. The model is developed based on more than 9,000 images of 28 cultivars.
 This project is the implementation of the paper "Biomass estimation of World Rice (<i>Oryza sativa</i> L.) Core Collection based on the convolutional neural network and digital images of canopy".
 
 ## Performance 
