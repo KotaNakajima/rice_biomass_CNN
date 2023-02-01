@@ -1,7 +1,7 @@
 # Rice Biomass CNN
 
 Rice Biomass CNN is a model to estimate the rice above ground biomass (biomass) based on RGB image of rice canopy. The model is developed based on more than 12,000 images of 31 cultivars.
-This project is the implementation of the paper "***".
+This project is the implementation of the paper "Biomass estimation of World Rice (<i>Oryza sativa</i> L.) Core Collection based on the convolutional neural network and digital images of canopy".
 
 ## Performance 
 
@@ -66,7 +66,7 @@ python estimate.py --checkpoint_path checkpoints/rice_biomass_CNN.hdf5 --image_d
 
 You can find estimated biomass on your console.
 
-Below are meanings of options.
+Belows are meanings of options.
 
 - checkpoint_path : Path to the checkpoint file you saved.
 
