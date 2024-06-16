@@ -1,15 +1,10 @@
 import numpy as np
-#import torch
-import tensorflow as tf
-from tensorflow.python.keras.models import load_model
 import cv2
 import os
 import pandas as pd
 import argparse
 from glob import glob
-#from lib.model import RiceBiomassCNN
-#from torch.utils.data.sampler import RandomSampler
-#from importlib import import_module, reload
+from lib.model import build
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--checkpoint_path', type=str, required=True)
@@ -29,22 +24,10 @@ std = 0.5
 
 image_path_list = sorted(glob(os.path.join(image_dir, "*")))
 
-def RMSE(y_true, y_pred):
-    squared_error = tf.keras.backend.square(y_true - y_pred)
-    MSE = tf.keras.backend.mean(squared_error)
-    RMSE = tf.sqrt(MSE)
-    return RMSE
-
 if __name__ == "__main__":
 
-    #model = RiceBiomassCNN()
-    model = load_model("checkpoints/model.08Adam_nnc6_256_0.001",custom_objects={"RMSE": RMSE} )
-    #checkpoint = torch.load(checkpoint_path, map_location=torch.device(device))
-    #state_dict = checkpoint['state_dict']
-    #model.load_state_dict(state_dict, strict=True)
+    model = build()
     model.load_weights(checkpoint_path)
-    #model.to(device)
-    #model.eval()
 
     results = []
     for i, image_path in enumerate(image_path_list):
@@ -58,8 +41,7 @@ if __name__ == "__main__":
     
         input_img = input_img.transpose(1,0,2)
         input_img = np.expand_dims(input_img,0)
-        print(type(input_img))
-        ##input_img = torch.Tensor(input_img).unsqueeze(0).to(device)
+
         # model output
         pred_biomass = model.predict(input_img)
 
