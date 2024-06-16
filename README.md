@@ -48,13 +48,6 @@ pip install -r requirements.txt
 
 Please install Tensorflow version compatible with your cuda version.
 
-3. Download pre-trained model from google drive.
-
-```bash
-mkdir checkpoints
-wget "https://drive.google.com/file/d/1GucC686zyi9PYXocQCNUmW43PlmCOW1N/view?usp=sharing" -O rice_biomass_CNN_weights.hdf5
-```
-
 ## Estimation
 
 Run
