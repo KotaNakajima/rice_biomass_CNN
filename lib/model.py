@@ -1,33 +1,5 @@
-#import glob
-#import numpy as np
-#import pandas as pd
-#import os
-#import keras
-#import matplotlib.pyplot as plt
-#import tensorflow as tf
-#from collections import defaultdict
-#from keras.applications.resnet_v2 import ResNet152V2
-#from keras.activations import selu
-#from keras import models, callbacks
-#from keras.utils import np_utils
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, AveragePooling2D, Dense, Activation, Flatten, Input, LeakyReLU, ELU, BatchNormalization, add, multiply, concatenate
 from tensorflow.keras.models import Model
-#from tensorflow.keras.layers import Dense, Activation, Flatten
-#from tensorflow.keras.layers import add, multiply, concatenate, maximum, average
-#from tensorflow.keras.layers import Input, LeakyReLU, ELU
-#from keras.preprocessing.image import array_to_img, img_to_array, load_img
-#from sklearn.model_selection import train_test_split
-#from keras import optimizers
-#from keras.preprocessing.image import load_img,img_to_array
-#from keras.callbacks import ModelCheckpoint, LearningRateScheduler
-#from keras import layers
-#from tensorflow.keras.layers import BatchNormalization
-#from scipy import optimize
-#from sklearn.metrics import r2_score
-#from tensorflow.keras.utils import plot_model
-#from keras.optimizers import Adam, Nadam
-
-
 
 class RiceBiomassCNN:
     def __init__(self, input_shape):
@@ -90,6 +62,6 @@ class RiceBiomassCNN:
         
         return currentmodel
 
-def build(input_shape):
+def build(input_shape=(225,300,3)):
     model = RiceBiomassCNN(input_shape).model
     return model
